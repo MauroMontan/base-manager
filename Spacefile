@@ -1,0 +1,9 @@
+# Spacefile Docs: https://go.deta.dev/docs/spacefile/v0
+v: 0
+micros:
+  - name: deta-record-manager
+    src: ./
+    engine: static
+    commands:
+      - npm run build
+    serve: dist
