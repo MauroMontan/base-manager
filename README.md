@@ -6,6 +6,12 @@
 
 Although the interface is designed to be used with commands, you can use your mouse to interact with the app. Adding projects and bases can be executed only with commands.
 
+![home page](./src/assets/samples/home-page.png)
+Empty Homepage
+
+![full home page](./src/assets/samples/full-home-page.png)
+Homepage with data added
+
 ### Command bar and Shortcuts
 
 The commands and shortcuts are made to do anything in the app from navigation to interacting with your projects and bases. consult the command table by pressing crtl + B

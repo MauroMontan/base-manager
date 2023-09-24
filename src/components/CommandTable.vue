@@ -92,22 +92,25 @@ const emit = defineEmits<Emits>()
         <legend>Shortcuts</legend>
 
         <ul>
+
+          <li>
+            <div class="key-cap long-key">ctrl</div> + <div class="key-cap">O</div>
+            <p>Add new Project</p>
+          </li>
+          <li>
+            <div class="key-cap long-key">ctrl</div> + <div class="key-cap">I</div>
+            <p>Add base to project</p>
+          </li>
           <li>
             <div class="key-cap long-key">ctrl</div> + <div class="key-cap">K</div>
             <p>Focus command bar</p>
           </li>
-          <li>
-            <div class="key-cap long-key">ctrl</div> + <div class="key-cap">H</div>
-            <p>Help</p>
-          </li>
+
           <li>
             <div class="key-cap long-key">ctrl</div> + <div class="key-cap">B</div>
             <p>Open command table</p>
           </li>
-          <li>
-            <div class="key-cap long-key">ctrl</div> + <div class="key-cap">G</div>
-            <p>Open settings</p>
-          </li>
+
         </ul>
 
       </fieldset>
@@ -152,7 +155,9 @@ fieldset {
 
 
 .title {
-  font-size: 2rem;
+  font-size: 1.3rem;
+  width: fit-content;
+  white-space: nowrap;
 }
 
 legend {
@@ -160,7 +165,7 @@ legend {
   background-color: var(--bg-color);
   margin-left: 1rem;
   padding-inline: 0.3rem;
-  font-size: 1.1rem;
+
 }
 
 

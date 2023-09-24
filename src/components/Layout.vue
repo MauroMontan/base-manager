@@ -26,11 +26,18 @@
           </div>
           <p>Open command table</p>
         </div>
+
         <div class=" command-tag">
           <div class="key-combo">
-            <div class="key-cap long-key">ctrl</div> + <div class="key-cap">G</div>
+            <div class="key-cap long-key">ctrl</div> + <div class="key-cap">O</div>
           </div>
-          <p>Open settings</p>
+          <p>Add new Project</p>
+        </div>
+        <div class=" command-tag">
+          <div class="key-combo">
+            <div class="key-cap long-key">ctrl</div> + <div class="key-cap">I</div>
+          </div>
+          <p>Add Base to project</p>
         </div>
       </div>
     </div>
@@ -102,8 +109,8 @@
 .prompt {
 
   display: flex;
-  height: 100%;
-  width: 70%;
+  height: 80%;
+  width: 50%;
   gap: 1rem;
   align-items: center;
   justify-content: center;
@@ -112,12 +119,12 @@
 
 .command-list {
   font-size: 0.8rem;
-  width: 30%;
+  width: 100%;
   display: flex;
   gap: 0.5rem;
   height: 100%;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   border-radius: 0.5rem;
 }
 
@@ -134,13 +141,23 @@
 .command-tag {
   border-radius: 0.3rem;
   display: flex;
-  flex-direction: column;
   gap: 0.5rem;
   height: 100%;
-  padding: 1rem;
+  padding-inline: 1rem;
   border: solid 1px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
+}
+
+@media (max-width: 768px) {
+  .command-list {
+    display: none;
+  }
+
+  .command-bar,
+  .command-bar>* {
+    width: 100%;
+  }
 }
 </style>

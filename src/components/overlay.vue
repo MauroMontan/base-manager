@@ -26,5 +26,6 @@ const emit = defineEmits<Emits>()
     align-items: center;
     flex-direction: column;
     justify-content: center;
+
 }
 </style>

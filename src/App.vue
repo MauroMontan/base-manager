@@ -2,6 +2,7 @@
 import HomePage from "./components/StartPage.vue"
 import MainLayout from "./components/Layout.vue"
 import RowPreview from "./components/RowPreview.vue";
+import AddProjectFrom from "./components/AddProjectForm.vue"
 import { CommandBuilder } from "./helpers/CommandBuilder.ts"
 import { Ref, computed, onMounted, ref } from "vue";
 import { Network } from "./helpers/Network.ts"
@@ -17,11 +18,19 @@ const isOverlayOpen = ref(false)
 
 const isProjectListInfoOpen = ref(false)
 const isCommandTableOpen = ref(false)
+const isFormModalOpen = ref(false)
 const toggleProjectList = () => {
   isProjectListInfoOpen.value = !isProjectListInfoOpen.value
 }
 const toggleOverlay = () => {
   isOverlayOpen.value = !isOverlayOpen.value
+}
+
+const toggleProjectForm = async () => {
+  isFormModalOpen.value = !isFormModalOpen.value
+  if (isFormModalOpen.value) {
+    projectList.value = await net.getProjectList()
+  }
 }
 
 const toggleCommandTable = () => {
@@ -32,6 +41,7 @@ const closeAll = () => {
   isOverlayOpen.value = false
   isProjectListInfoOpen.value = false
   isCommandTableOpen.value = false
+  isFormModalOpen.value = false
 }
 
 const keys: Ref<string[]> = ref([])
@@ -131,6 +141,11 @@ onMounted(async () => {
       e.preventDefault();
       return;
     }
+    if ((e.ctrlKey && e.key === "O") || (e.ctrlKey && e.key === "o")) {
+      toggleProjectForm()
+      e.preventDefault();
+      return;
+    }
   });
 
   projectList.value = await net.getProjectList()
@@ -147,6 +162,7 @@ const isbaseEmpty = computed(() => {
 </script>
 
 <template>
+  <AddProjectFrom v-if="isFormModalOpen" @toggle-modal="toggleProjectForm"></AddProjectFrom>
   <CommandTable @toggle-modal="toggleCommandTable" v-if="isCommandTableOpen">
   </CommandTable>
   <ProjectBaseList :data="currentProjectBaseList" :project-name="currentSelectedProjectName" v-if="isProjectListInfoOpen"
@@ -185,7 +201,7 @@ const isbaseEmpty = computed(() => {
       <fieldset>
         <legend>projects</legend>
         <div class="empty-label" v-if="projectList.length === 0">
-          <img src="./assets/folder.gif" alt="empty-image">
+          <img class="floating" src="./assets/folder.gif" alt="empty-image">
         </div>
         <ul v-else>
           <li @click="openBaseList(project)" v-for="project in projectList">{{ project["label"] }}</li>
@@ -218,6 +234,10 @@ table {
   justify-content: center;
 }
 
+.floating {
+  animation: floating 1.5s infinite;
+}
+
 img {
   width: 60%;
   height: 60%;
@@ -240,6 +260,7 @@ th {
 th {
   padding: 1rem;
   position: -webkit-sticky;
+  max-height: 3rem;
   /* Safari */
   position: sticky;
   top: 0;
@@ -317,6 +338,21 @@ fieldset ul li {
 li>* {
   cursor: default;
 }
+
+@keyframes floating {
+  from {
+    transform: translateY(0.5rem);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(0.5rem);
+  }
+}
+
 
 fieldset legend {
   background-color: var(--bg-color);

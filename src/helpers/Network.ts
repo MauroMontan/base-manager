@@ -1,6 +1,5 @@
 
 import { Deta, Base } from "deta"
-import { Project } from "../interfaces/Project.ts";
 
 export class Network {
 
@@ -21,7 +20,7 @@ export class Network {
     return (await this.deta.Base(baseName).fetch({})).items
   }
 
-  addNewProject(project: Project) {
+  addNewProject(project: any) {
 
     this.projects.insert({
       label: project.label,
