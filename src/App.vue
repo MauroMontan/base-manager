@@ -98,8 +98,6 @@ const triggerCommand = async () => {
 
     query.value = cmdBuilder.command
   }
-
-
   if (cmdBuilder.command === "/commands") {
     toggleCommandTable()
   }
@@ -324,4 +322,3 @@ fieldset legend {
   background-color: var(--bg-color);
 }
 </style>
-./helpers/Network.ts
